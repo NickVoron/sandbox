@@ -1,0 +1,15 @@
+[submodule "boost-cmake"]
+	path = boost-cmake
+	url = https://github.com/NickVoron/boost-cmake
+[submodule "install"]
+	path = install
+	url = https://github.com/NickVoron/install
+[submodule "Stable"]
+	path = Stable
+	url = https://github.com/NickVoron/Stable
+[submodule "third_party"]
+	path = third_party
+	url = https://github.com/NickVoron/third_party
+[submodule "VS_Props"]
+	path = VS_Props
+	url = https://github.com/NickVoron/VS_Props

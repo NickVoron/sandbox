@@ -50,6 +50,9 @@ with cwd(build_path):
 
     subprocess.check_call(cmd)
 
+with cwd('.'):
+    subprocess.check_call(['git', 'submodule', 'update', '--init', '--recursive'])
+
 with cwd('boost-cmake/boost/boost_1_64_0'):
     p = subprocess.Popen("bootstrap.bat", cwd=r".")
     stdout, stderr = p.communicate()

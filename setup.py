@@ -55,5 +55,5 @@ with cwd(build_path):
 with cwd('boost-cmake/boost/boost_1_64_0'):
     p = subprocess.Popen("bootstrap.bat", cwd=r".")
     stdout, stderr = p.communicate()
-    subprocess.call(['bjam', '--stagedir="stage/x64"', '-j10', 'toolset=msvc', 'address-model=64', 'variant=release',  'threading=multi', 'link=static', 'runtime-link=static,shared', 'define=_SECURE_SCL=0', 'define=_HAS_ITERATOR_DEBUGGING=0',  'define=BOOST_TEST_NO_MAIN'])
-    subprocess.call(['bjam', '--stagedir="stage/x64"', '-j10', 'toolset=msvc', 'address-model=64', 'variant=debug'  ,  'threading=multi', 'link=static', 'runtime-link=static,shared', 'define=BOOST_TEST_NO_MAIN'])
+    subprocess.call(['bjam', '--stagedir=stage/x64', '-j10', 'toolset=msvc', 'address-model=64', 'variant=release',  'threading=multi', 'link=static', 'runtime-link=static,shared', 'define=_SECURE_SCL=0', 'define=_HAS_ITERATOR_DEBUGGING=0',  'define=BOOST_TEST_NO_MAIN'])
+    subprocess.call(['bjam', '--stagedir=stage/x64', '-j10', 'toolset=msvc', 'address-model=64', 'variant=debug'  ,  'threading=multi', 'link=static', 'runtime-link=static,shared', 'define=BOOST_TEST_NO_MAIN'])

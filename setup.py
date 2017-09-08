@@ -35,7 +35,7 @@ def cwd(new_cwd):
 with cwd('.'):
     subprocess.check_call(['git', 'submodule', 'update', '--init', '--recursive'])
 
-intermediate_path = '_obj-lib-etc'
+intermediate_path = '_obj-libs-etc'
 root_path = Path(__file__).parent.resolve()
 build_path = Path(intermediate_path) / 'windows' / 'sharedtec'
 build_path.mkdir(parents=True, exist_ok=True)

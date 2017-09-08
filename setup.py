@@ -1,11 +1,6 @@
 #!/usr/bin/env python3
 
-import subprocess
-import contextlib
-import logging
-import os
-import shutil
-
+import subprocess, contextlib, logging, os, shutil, msbuild
 from pathlib import Path
 
 #
@@ -53,7 +48,14 @@ with cwd(build_path):
     subprocess.check_call(cmd)
 
 with cwd('boost-cmake/boost/boost_1_64_0'):
-    p = subprocess.Popen("bootstrap.bat", cwd=r".")
-    stdout, stderr = p.communicate()
+    if not os.path.exists("bjam.exe"):
+        p = subprocess.Popen("bootstrap.bat", cwd=r".")
+        stdout, stderr = p.communicate()
     subprocess.call(['bjam', '--stagedir=stage/x64', '-j10', 'toolset=msvc', 'address-model=64', 'variant=release',  'threading=multi', 'link=static', 'runtime-link=static,shared', 'define=_SECURE_SCL=0', 'define=_HAS_ITERATOR_DEBUGGING=0',  'define=BOOST_TEST_NO_MAIN'])
     subprocess.call(['bjam', '--stagedir=stage/x64', '-j10', 'toolset=msvc', 'address-model=64', 'variant=debug'  ,  'threading=multi', 'link=static', 'runtime-link=static,shared', 'define=BOOST_TEST_NO_MAIN'])
+
+with cwd("third_party"):
+    subprocess.call([msbuild.msbuild(), 'third_party.sln', '/t:Rebuild', '/p:Configuration=Release', '/maxcpucount:12'])
+
+with cwd("Stable"):
+    subprocess.call([msbuild.msbuild(), 'libs.sln', '/t:Rebuild', '/p:Configuration=Release', '/maxcpucount:12'])
